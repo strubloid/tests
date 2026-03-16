@@ -12,45 +12,55 @@ section .task {
 .details {
   background: var(--accent-bg);
   border: 1px solid var(--accent-border);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
   align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: var(--accent);
+  }
 
   h3 {
     font-family: var(--heading);
     font-weight: 600;
     color: var(--text-h);
-    font-size: 20px;
-    margin: 0 0 12px;
+    font-size: 18px;
+    margin: 0 0 4px;
+    text-align: center;
+    line-height: 1.4;
   }
 
   p {
-    margin: 6px 0;
-    line-height: 1.5;
+    margin: 4px 0;
+    line-height: 1.6;
+    font-size: 15px;
+    text-align: center;
   }
 
   img {
-    max-height: 280px;
-    max-width: 420px;
+    max-height: 220px;
+    max-width: 220px;
     object-fit: contain;
-    border-radius: 6px;
-    background: var(--bg);
-    padding: 20px;
+    border-radius: 10px;
+    background: var(--bg-solid);
+    padding: 16px;
     box-shadow: var(--shadow);
-    margin: 20px;
+    margin: 12px 0;
   }
 
   .price {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     color: var(--price);
     background-color: var(--price-bg);
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin: 8px 0;
+    letter-spacing: 0.3px;
   }
 }
 
@@ -79,28 +89,55 @@ section .task {
   }
 }
 
+.results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  li {
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover {
+      background: var(--list-hover);
+      color: var(--text-h);
+    }
+  }
+}
+
 .button {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 10px 22px;
   background-color: var(--primary);
   color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: background-color 0.15s, transform 0.1s, box-shadow 0.15s;
 
   &:hover {
     background-color: var(--primary-hover);
+    box-shadow: var(--shadow);
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 }
-.button li{
+
+#buttons-list {
   display: flex;
   justify-content: center;
-  gap: 16px;
-}
-
-#buttons-list{
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+  list-style-type: none;
+  padding: 0;
 }
