@@ -47,10 +47,14 @@ function Products() {
     // Animate product list when it loads
     useEffect(() => {
         if (products.length > 0) {
-            gsap.fromTo(
+            // loading timeline of products
+            let timeline = gsap.timeline()
+
+            // animating with a bit of stagger and elastic effect to make it more dynamic
+            timeline.fromTo(
                 '.results > ul > li',
-                { opacity: 0, x: 20 },
-                { opacity: 1, x: 0, duration: 0.3, stagger: 0.03, ease: 'power2.out' },
+                { x: -200, opacity: 0 },
+                { x: 0, duration: 0.13, opacity: 1, stagger: 0.1, ease: 'elastic' },
             )
         }
     }, showEffectsWhenProductsLoad)
