@@ -9,6 +9,51 @@ section .task {
   }
 }
 
+.details {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-family: var(--heading);
+    font-weight: 600;
+    color: var(--text-h);
+    font-size: 20px;
+    margin: 0 0 12px;
+  }
+
+  p {
+    margin: 6px 0;
+    line-height: 1.5;
+  }
+
+  img {
+    max-height: 280px;
+    max-width: 420px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: var(--bg);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin: 20px;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--price);
+    background-color: var(--price-bg);
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+}
+
 #products-tasks {
   display: flex;
   border-top: 1px solid var(--border);

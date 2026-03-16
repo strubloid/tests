@@ -107,18 +107,20 @@ function Products() {
             </section>
             <section id="products-tasks">
                 <div className="task">
-                    <h2>Loading products from an API</h2>
                     {showDetails && (
-                        <div className="details">
-                            <h3>{details?.title}</h3>
-                            <p>{details?.description}</p>
-                            <p>Price: {details?.price}</p>
-                            <p>Category: {details?.category}</p>
-                            <p>
-                                Rating: {details?.rating.rate} ({details?.rating.count} reviews)
-                            </p>
-                            <img src={details?.image} alt={details?.title} />
-                        </div>
+                        <>
+                            <h2>Details from the product</h2>
+                            <div className="details">
+                                <h3>{details?.title}</h3>
+                                <img src={details?.image} alt={details?.title} />
+                                <p>{details?.description}</p>
+                                <p className="price">Price: {details?.price}</p>
+                                <p>Category: {details?.category}</p>
+                                <p>
+                                    Rating: {details?.rating.rate} ({details?.rating.count} reviews)
+                                </p>
+                            </div>
+                        </>
                     )}
                 </div>
                 <div className="task results">
