@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import gsap from 'gsap'
 import './Product.css'
-import type { Product } from '@src/component/products/Product'
+import type { APIProduct } from '@src/component/products/APIProduct'
 
 function Products() {
     // API url for fetching products
     const fakeStoreApiUrl = 'https://fakestoreapi.com/products'
 
     // product collection
-    let [products, setProducts] = useState<Product[]>([])
+    let [products, setProducts] = useState<APIProduct[]>([])
 
     // details of a clicked product
-    let [details, setDetails] = useState<Product | null>(null)
+    let [details, setDetails] = useState<APIProduct | null>(null)
 
     // this will be checking if we should show or hide the details
     let [showDetails, setShowDetails] = useState(false)
@@ -63,7 +63,7 @@ function Products() {
      * This function will be loading the details of each product when the
      * user clicks on the product name.
      */
-    const loadDetails = (product: Product) => {
+    const loadDetails = (product: APIProduct) => {
         try {
             // Checking if already set the details for the product, if so, we will not update the state
             if (details && details.id === product.id) {
