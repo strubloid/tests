@@ -37,12 +37,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #a1a1aa;
-    --price: #4ade80;
-    --price-bg: rgba(74, 222, 128, 0.1);
+    --price: #34d399;
+    --price-bg: rgba(52, 211, 153, 0.12);
     --text-h: #f4f4f5;
-    --bg: #18181b;
-    --bg-solid: #1e1e22;
-    --border: #2e2e35;
+    --bg: #0f0f13;
+    --bg-solid: #1a1a20;
+    --border: #27272f;
     --code-bg: #1f2028;
     --accent: #a78bfa;
     --primary: #6d28d9;

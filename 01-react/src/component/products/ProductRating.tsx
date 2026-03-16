@@ -1,4 +1,4 @@
 export interface ProductRating {
-    rate: number;
-    count: number;
+    rate: number
+    count: number
 }

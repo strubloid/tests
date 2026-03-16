@@ -1,5 +1,5 @@
-import Products from "@src/component/products/Products";
-import "./App.css";
+import Products from '@src/component/products/Products'
+import './App.css'
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
             <div className="ticks"></div>
             <section id="spacer"></section>
         </>
-    );
+    )
 }
 
-export default App;
+export default App
