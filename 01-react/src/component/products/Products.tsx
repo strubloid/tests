@@ -76,6 +76,18 @@ function Products() {
     };
 
     /**
+     * This will be responsible for closing the details of the product, hiding
+     * the details and cleaning the products and details states.
+     */
+    const closeDetails = () => {
+        // we first make it disapear the details of the page
+        setShowDetails(false);
+
+        // we clean the details
+        setDetails(null);
+    };
+
+    /**
      * This will be responsible for loading the products from the API and
      * setting the products state with the data received.
      */
@@ -109,8 +121,10 @@ function Products() {
                 <div className="task">
                     {showDetails && (
                         <>
-                            <h2>Details from the product</h2>
                             <div className="details">
+                                <p className="close" onClick={closeDetails}>
+                                    x
+                                </p>
                                 <h3>{details?.title}</h3>
                                 <img src={details?.image} alt={details?.title} />
                                 <p>{details?.description}</p>

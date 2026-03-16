@@ -10,6 +10,7 @@ section .task {
 }
 
 .details {
+  position: relative;
   background: var(--accent-bg);
   border: 1px solid var(--accent-border);
   border-radius: 12px;
@@ -24,12 +25,27 @@ section .task {
     border-color: var(--accent);
   }
 
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 24px;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text);
+    transition: color 0.15s;
+
+    &:hover {
+      color: var(--text-h);
+    }
+  }
+
   h3 {
     font-family: var(--heading);
     font-weight: 600;
     color: var(--text-h);
     font-size: 18px;
-    margin: 0 0 4px;
+    margin: 10px 0;
+    padding: 10px;
     text-align: center;
     line-height: 1.4;
   }
