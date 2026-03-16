@@ -159,10 +159,10 @@ function Products() {
             <section id="container-centered">
                 <ul id="buttons-list">
                     <li>
-                        <a onClick={loadProducts} className="button">
+                        <a onClick={loadProducts} className="button getProducts">
                             Get Products
                         </a>
-                        <a onClick={cleanProducts} className="button">
+                        <a onClick={cleanProducts} className="button cleanProducts">
                             Clean
                         </a>
                     </li>
@@ -192,7 +192,11 @@ function Products() {
                     {products.length > 0 && (
                         <ul>
                             {products.map((product: any) => (
-                                <li onClick={() => loadDetails(product)} key={product.id}>
+                                <li
+                                    data-testid="product-item"
+                                    onClick={() => loadDetails(product)}
+                                    key={product.id}
+                                >
                                     {product.title}
                                 </li>
                             ))}
