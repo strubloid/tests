@@ -42,8 +42,20 @@ section .task {
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
+  margin-left: 20px;
 
   &:hover {
     background-color: var(--primary-hover);
   }
+}
+.button li{
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+#buttons-list{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
 }

@@ -9,9 +9,7 @@ function App() {
                     <h1>Fetching data on API's</h1>
                 </div>
             </section>
-
             <Products />
-
             <div className="ticks"></div>
             <section id="spacer"></section>
         </>
