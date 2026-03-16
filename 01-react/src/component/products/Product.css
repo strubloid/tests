@@ -1,3 +1,5 @@
+
+
 section .task {
   border-right: 1px solid var(--border);
 
@@ -29,5 +31,19 @@ section .task {
   @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-hover);
   }
 }
