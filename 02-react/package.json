@@ -12,6 +12,7 @@
         "test:p": "vitest run src/component/products/Products.test.tsx"
     },
     "dependencies": {
+        "@rolldown/binding-win32-x64-msvc": "^1.0.0-rc.9",
         "@testing-library/user-event": "^14.6.1",
         "react": "^19.2.4",
         "react-dom": "^19.2.4"
