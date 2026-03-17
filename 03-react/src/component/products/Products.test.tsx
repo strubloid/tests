@@ -24,40 +24,37 @@ const mockProducts = [
     },
 ];
 
+// url of the api call
+const apiURL = "https://fakestoreapi.com/products";
+
 // creating the save of original fetch
 const originalFetch = globalThis.fetch;
 
 describe("Products", () => {
-    // before each test we create the mock of the fetch with the MockProducts as a Response
     beforeEach(() => {
-        // mock the return with a fake data
+        // we are loading the fetch mock data here
         globalThis.fetch = async () => ({ ok: true, json: async () => mockProducts }) as Response;
     });
 
-    // after each test we put it back what was the original value of the mocked data
     afterEach(() => {
+        // we roll back to the main fetch each case
         globalThis.fetch = originalFetch;
     });
 
-    it("loads when the api URL is correct", async () => {
-        // this will be the variable to check after the request to the API
+    it("is it able to load a product fetch?", async () => {
         var titleToCheck = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
 
-        // loading the service object
-        const productService = new ProductService();
+        // loading the service
+        const service = new ProductService();
 
-        // loading the api url value to check
-        const apiUrl = "https://fakestoreapi.com/products";
+        // getting the api response
+        const apiResponse: APIProduct[] = await service.fetchData(apiURL);
 
-        // trying to use the api function
-        const data = await productService.fetchData(apiUrl);
+        // checking that response isnt null
+        expect(apiResponse).not.toBeNull();
 
-        // loading all titles from each object
-        const allTitles: string = data.map((item: APIProduct) => item.title).join(" ");
+        const jsonData = apiResponse.map((product: APIProduct) => product.title).join(" ");
 
-        console.log(allTitles);
-
-        // checking if the data is what is expected
-        expect(allTitles).toContain(titleToCheck);
+        expect(jsonData).toContain(titleToCheck);
     });
 });

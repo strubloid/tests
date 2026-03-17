@@ -9,7 +9,7 @@ export class ProductService {
      * @param url ulr of the place to get data from
      * @returns data from the place or empty
      */
-    public fetchData = async (url: string) => {
+    public fetchData = async (url: string): Promise<APIProduct[]> => {
         try {
             // getting the api fetch working
             const response = await fetch(url, {
@@ -36,7 +36,7 @@ export class ProductService {
             return data;
         } catch (error) {
             console.error("Error fetchin the data: ", error);
-            return false;
+            throw error;
         }
     };
 

@@ -11,12 +11,12 @@ export class ProductService {
      */
     public fetchData = async (url: string) => {
         try {
-            let data: any[] = [];
+            let data: APIProduct[] = [];
 
             return data;
         } catch (error) {
             console.error("Error fetchin the data: ", error);
-            return false;
+            throw error;
         }
     };
 
@@ -24,13 +24,13 @@ export class ProductService {
      * This will be loading all product details
      * @param product
      */
-    public loadDetails = (product: APIProduct): APIProduct | false => {
+    public loadDetails = (product: APIProduct): APIProduct => {
         try {
             // after validations
 
             return product;
         } catch (error) {
-            return false;
+            throw error;
         }
     };
 }

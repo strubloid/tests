@@ -55,8 +55,6 @@ describe("Products", () => {
         // loading all titles from each object
         const allTitles: string = data.map((item: APIProduct) => item.title).join(" ");
 
-        console.log(allTitles);
-
         // checking if the data is what is expected
         expect(allTitles).toContain(titleToCheck);
     });

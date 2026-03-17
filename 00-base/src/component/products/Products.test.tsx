@@ -50,14 +50,15 @@ describe("Products", () => {
         const apiUrl = "https://fakestoreapi.com/products";
 
         // trying to use the api function
-        const data = await productService.fetchData(apiUrl);
+        const data: APIProduct[] = await productService.fetchData(apiUrl);
 
-        // loading all titles from each object
-        const allTitles: string = data.map((item: APIProduct) => item.title).join(" ");
+        // checking that response isnt null
+        expect(data).not.toBeNull();
 
-        console.log(allTitles);
+        // getting the data of the map
+        const jsonData = data.map((product: APIProduct) => product.title).join(" ");
 
-        // checking if the data is what is expected
-        expect(allTitles).toContain(titleToCheck);
+        //checking that the json data contain the titleToCheck
+        expect(jsonData).toContain(titleToCheck);
     });
 });

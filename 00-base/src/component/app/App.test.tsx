@@ -9,6 +9,6 @@ import App from "./App";
 describe("App", () => {
     it("renders", () => {
         render(<App />);
-        expect(screen.getByText("Get started")).toBeInTheDocument();
+        expect(screen.getByText("Fetching data on API's")).toBeInTheDocument();
     });
 });
