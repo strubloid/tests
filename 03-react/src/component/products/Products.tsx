@@ -55,6 +55,7 @@ function Products() {
      */
     const fetchData = async (url: string) => {
         try {
+            setShowDetails(false);
             const data = await productService.fetchData(url);
             return data;
         } catch (error) {
@@ -98,6 +99,7 @@ function Products() {
      * setting it to an empty array.
      */
     function cleanProducts() {
+        setShowDetails(false);
         setProducts([]);
     }
 
