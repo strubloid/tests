@@ -25,7 +25,12 @@ export class ProductService {
      */
     public static loadDetails = (product: APIProduct): APIProduct => {
         try {
-            const requiredFields = ["title", "price", "description", "category"];
+            const requiredFields = {
+                title: "string",
+                price: "number",
+                description: "string",
+                category: "string",
+            } as const;
 
             return product;
         } catch (error) {
