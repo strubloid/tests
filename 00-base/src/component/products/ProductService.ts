@@ -25,7 +25,7 @@ export class ProductService {
      */
     public static loadDetails = (product: APIProduct): APIProduct => {
         try {
-            // after validations
+            const requiredFields = ["title", "price", "description", "category"];
 
             return product;
         } catch (error) {
