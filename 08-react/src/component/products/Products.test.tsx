@@ -108,4 +108,38 @@ describe("Products", () => {
         // the error message is correct
         expect(capturedError?.message).toContain(errorMessage);
     });
+
+    it("loads the details of a product when all required fields are present", async () => {
+        // Creating a valid product with all required fields
+        const validProduct = mockProducts[1];
+
+        // this will check the loaded product after the request to the API
+        let loadedProduct: APIProduct | null = null;
+
+        // variable to capture any error that our system might throw
+        let capturedError: Error | null = null;
+
+        try {
+            // we tru to load the details of the valid product
+            loadedProduct = ProductService.loadDetails(validProduct);
+        } catch (error) {
+            capturedError = error as Error;
+        }
+
+        // no exception should exist
+        expect(capturedError).toBeNull();
+
+        // we need to compare the loaded product with the validProduct to check if the details are correct
+        expect(loadedProduct).toEqual(validProduct);
+
+        // checking each field
+        const fieldsToCheck = ["title", "price", "description", "category", "rating"];
+        fieldsToCheck.forEach((field) => {
+            // we check first that the required fields exist in the loaded product
+            expect(loadedProduct).toHaveProperty(field);
+
+            // we check each field of the loaded product is equal to respectie in the validProduct
+            expect(loadedProduct?.[field as keyof APIProduct]).toEqual(validProduct[field as keyof APIProduct]);
+        });
+    });
 });

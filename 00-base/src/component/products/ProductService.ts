@@ -15,7 +15,6 @@ export class ProductService {
 
             return data;
         } catch (error) {
-            console.error("Error fetchin the data: ", error);
             throw error;
         }
     };
