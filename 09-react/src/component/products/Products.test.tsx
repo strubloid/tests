@@ -108,4 +108,33 @@ describe("Products", () => {
         // the error message is correct
         expect(capturedError?.message).toContain(errorMessage);
     });
+    it("throws an error when a field has an invalid type", async () => {
+        // we create a product with required field having an invalid type
+        const invalidProductPrice = { ...mockProducts[0], price: "invalid_string_price_should_be_a_number" } as unknown as APIProduct;
+
+        // the message that we should get when is thown the exception
+        const errorMessage = "Invalid type for field: price";
+
+        // this will be the variable to check after the request to the API
+        let capturedError: Error | null = null;
+
+        // we mock the fetch with the invalid product price type
+        globalThis.fetch = async () => ({ ok: true, json: async () => [invalidProductPrice] }) as Response;
+
+        try {
+            // we try to load the details of the product with the invalid price type
+            const data = ProductService.loadDetails(invalidProductPrice);
+
+            // we expect to be null as it should throw an exception
+            expect(data).toBeNull();
+        } catch (error) {
+            capturedError = error as Error;
+        }
+
+        // we check that the error exist something in it
+        expect(capturedError).not.toBeNull();
+
+        // we check that the error message contain the expected error message
+        expect(capturedError?.message).toContain(errorMessage);
+    });
 });
