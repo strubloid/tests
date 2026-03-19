@@ -9,7 +9,7 @@ export class ProductService {
      * @param url ulr of the place to get data from
      * @returns data from the place or empty
      */
-    public fetchData = async (url: string) => {
+    public static fetchData = async (url: string) => {
         try {
             let data: APIProduct[] = [];
 
@@ -24,7 +24,7 @@ export class ProductService {
      * This will be loading all product details
      * @param product
      */
-    public loadDetails = (product: APIProduct): APIProduct => {
+    public static loadDetails = (product: APIProduct): APIProduct => {
         try {
             // after validations
 
