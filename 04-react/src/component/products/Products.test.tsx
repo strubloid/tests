@@ -39,26 +39,23 @@ describe("Products", () => {
         globalThis.fetch = originalFetch;
     });
 
-    it("loads when the api URL is correct", async () => {
-        // this will be the variable to check after the request to the API
-        var titleToCheck = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
+    it("is it loading the main products page", async () => {
+        // this is one of the data that will be loaded
+        const titleToCheck = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
 
-        // loading the service object
-        const productService = new ProductService();
-
-        // loading the api url value to check
+        // loading the api url to load the data
         const apiUrl = "https://fakestoreapi.com/products";
 
-        // trying to use the api function
-        const data: APIProduct[] = await productService.fetchData(apiUrl);
+        // loading the items
+        const products = await ProductService.fetchData(apiUrl);
 
-        // checking that response isnt null
-        expect(data).not.toBeNull();
+        // checking if the data is not null
+        expect(products).not.toBeNull();
 
-        // getting the data of the map
-        const jsonData = data.map((product: APIProduct) => product.title).join(" ");
+        // looping the data to get all the titles and check if the title is in the data
+        const allTitles: string = products.map((item: APIProduct) => item.title).join(" ");
 
-        //checking that the json data contain the titleToCheck
-        expect(jsonData).toContain(titleToCheck);
+        // we check if one of them is the one we are looking for
+        expect(allTitles).toContain(titleToCheck);
     });
 });

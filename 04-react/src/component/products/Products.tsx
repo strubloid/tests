@@ -16,9 +16,6 @@ function Products() {
     // this will be checking if we should show or hide the details
     let [showDetails, setShowDetails] = useState(false);
 
-    // loading the service
-    var productService = new ProductService();
-
     /**
      * This function will be loading the details of each product when the
      * user clicks on the product name.
@@ -26,7 +23,7 @@ function Products() {
     const loadDetails = (product: APIProduct) => {
         try {
             // loading the data from the api url
-            var details: APIProduct | false = productService.loadDetails(product);
+            var details: APIProduct | false = ProductService.loadDetails(product);
 
             // check if the details exists
             if (!details) {
@@ -55,8 +52,7 @@ function Products() {
      */
     const fetchData = async (url: string) => {
         try {
-            const data = await productService.fetchData(url);
-            return data;
+            return await ProductService.fetchData(url);
         } catch (error) {
             console.error("Error fetching data:", error);
             return false;
