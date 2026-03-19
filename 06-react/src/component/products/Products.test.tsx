@@ -84,4 +84,28 @@ describe("Products", () => {
         // the error message is correct
         expect(capturedError?.message).toContain(errorMessage);
     });
+
+    it("throws an error when is missing a required field", async () => {
+        // creating a product with a required field missing
+        const { title, ...productWithoutTitle } = mockProducts[0];
+        const invalidProduct = productWithoutTitle as unknown as APIProduct;
+        const errorMessage = "Missing required field: title";
+        let capturedError: Error | null = null;
+
+        // we mock the fetch with the product without the title
+        globalThis.fetch = async () => ({ ok: true, json: async () => [productWithoutTitle] }) as Response;
+
+        try {
+            // we try to load the details of the incomplete product
+            const data = ProductService.loadDetails(invalidProduct);
+        } catch (error) {
+            capturedError = error as Error;
+        }
+
+        // exist an exception being thrown
+        expect(capturedError).not.toBeNull();
+
+        // the error message is correct
+        expect(capturedError?.message).toContain(errorMessage);
+    });
 });

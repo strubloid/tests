@@ -13,6 +13,28 @@ export class ProductService {
         try {
             let data: APIProduct[] = [];
 
+            // loading the data from the API
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    Accepted: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            // checking the response status
+            if (!response.ok) {
+                throw new Error(`Error fetching data, try again!`);
+            }
+
+            // loading the data as json
+            data = await response.json();
+
+            // checking if the data is valid and not empty
+            if (!data || (Array.isArray(data) && data.length === 0)) {
+                throw new Error("Invalid data format received from API");
+            }
+
             return data;
         } catch (error) {
             console.error("Error fetchin the data: ", error);
@@ -26,7 +48,15 @@ export class ProductService {
      */
     public static loadDetails = (product: APIProduct): APIProduct => {
         try {
-            // after validations
+            // getting the required fields to check if the product has all the required data
+            const requiredFields = ["title", "price", "description", "category", "rating"];
+
+            // validating all required fields are present in the product
+            for (const field of requiredFields) {
+                if (!product[field as keyof APIProduct]) {
+                    throw new Error(`Missing required field: ${field}`);
+                }
+            }
 
             return product;
         } catch (error) {
