@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./People.css";
 
 type User = {
     gender: string;
@@ -116,9 +117,6 @@ function People() {
             }
 
             console.log(data.results);
-
-            // we set the current user
-            // setRandomUser(data.results[0]);
 
             // we update the collection of users with the new user loaded
             setRandomUserCollection((prevCollection) => [...prevCollection, data.results[0]]);

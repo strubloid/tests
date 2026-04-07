@@ -1,0 +1,8 @@
+.response ul {
+  list-style: none;
+  padding: 0;
+}
+
+.response li {
+  margin-bottom: 20px;
+}
