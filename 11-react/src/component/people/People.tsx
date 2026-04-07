@@ -116,7 +116,7 @@ function People() {
                 throw new Error("Invalid data format received from API");
             }
 
-            console.log(data.results);
+            // console.log(data.results);
 
             // we update the collection of users with the new user loaded
             setRandomUserCollection((prevCollection) => [...prevCollection, data.results[0]]);
@@ -133,22 +133,22 @@ function People() {
 
     return (
         <>
-            <h2>People</h2>
+            <h2>People List</h2>
             <div className="people">{fetching ? <h2>People loading...</h2> : null}</div>
             <div className="actions">
-                <button type="button" className="btn" onClick={fetchPeople}>
+                <button type="button" className="btn" data-testid="fetch-people-button" onClick={fetchPeople}>
                     Fetch People
                 </button>
             </div>
             <div className="response">
                 {randomUserCollection.length > 0 && (
                     <div>
-                        <h3>Random User Collection:</h3>
+                        <h3 data-testid="response-title">Random User Collection:</h3>
                         <ul>
                             {randomUserCollection.map((user, index) => (
                                 <li key={index}>
-                                    <p>Name: {getCurrentUserName(user)}</p>
-                                    <img src={getCurrentUserPictureThumbnail(user)} alt="user thumbnail" />
+                                    <p data-testid="name">Name: {getCurrentUserName(user)}</p>
+                                    <img data-testid="img" src={getCurrentUserPictureThumbnail(user)} alt="user thumbnail" />
                                 </li>
                             ))}
                         </ul>
