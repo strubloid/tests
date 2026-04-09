@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import "./Product.css";
 import { ProductService } from "./ProductService";
 import type { APIProduct } from "./ProductService";
 
+type SearchFormValues = {
+    title: string;
+};
+
 function Products() {
     // API url for fetching products
-    // const apiURL = "https://fakestoreapi.com/products";
     const apiURL = "https://api.escuelajs.co/api/v1/products";
 
     // product collection
@@ -16,6 +20,13 @@ function Products() {
 
     // this will be checking if we should show or hide the details
     let [showDetails, setShowDetails] = useState(false);
+
+    // React Hook Form setup for the product search form
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SearchFormValues>();
 
     /**
      * This function will be loading the details of each product when the
@@ -99,6 +110,25 @@ function Products() {
         setProducts([]);
     }
 
+    /**
+     * Handles the search form submission using React Hook Form.
+     * Fetches products filtered by title from the API.
+     */
+    const onSearch = async (data: SearchFormValues) => {
+        try {
+            const searchURL = `${apiURL}/?title=${encodeURIComponent(data.title)}`;
+            const result = await fetchData(searchURL);
+
+            if (!result) {
+                throw new Error("Not able to load the data");
+            }
+
+            setProducts(result);
+        } catch (error) {
+            console.error("Issues searching products, ", error);
+        }
+    };
+
     return (
         <>
             <section id="container-centered">
@@ -112,6 +142,34 @@ function Products() {
                         </a>
                     </li>
                 </ul>
+                <form className="search-form" onSubmit={handleSubmit(onSearch)} noValidate>
+                    <div className="search-field">
+                        <input
+                            type="text"
+                            placeholder="Search by title..."
+                            className={`search-input${errors.title ? " input-error" : ""}`}
+                            {...register("title", {
+                                required: "Title is required",
+                                minLength: {
+                                    value: 3,
+                                    message: "Title must be at least 3 characters",
+                                },
+                                maxLength: {
+                                    value: 100,
+                                    message: "Title must be at most 100 characters",
+                                },
+                            })}
+                        />
+                        <button type="submit" className="button">
+                            Search
+                        </button>
+                    </div>
+                    {errors.title && (
+                        <p className="field-error" role="alert">
+                            {errors.title.message}
+                        </p>
+                    )}
+                </form>
             </section>
             <section id="products-tasks">
                 <div className="task">
