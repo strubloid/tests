@@ -46,13 +46,26 @@ export class ProductService {
      */
     public static loadDetails = (product: APIProduct): APIProduct => {
         try {
-            // required field to check
-            const requiredFields = ["title", "price", "description", "category"];
+            const requiredFields = {
+                title: "string",
+                price: "number",
+                description: "string",
+                category: "object",
+            } as const;
 
-            // validating all required fields are present in the product
-            for (const field of requiredFields) {
-                if (!product[field as keyof APIProduct]) {
+            // validating each required field to be present in the product
+            for (const [field, expectedFieldType] of Object.entries(requiredFields)) {
+                // we load the current value to check
+                const value = product[field as keyof APIProduct];
+
+                // first check if the value is undefined or null
+                if (value === undefined || value === null) {
                     throw new Error(`Missing required field: ${field}`);
+                }
+
+                // we check if the type of the value is correct
+                if (typeof value !== expectedFieldType) {
+                    throw new Error(`Invalid type for field: ${field}`);
                 }
             }
 

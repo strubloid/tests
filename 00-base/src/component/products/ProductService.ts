@@ -25,12 +25,7 @@ export class ProductService {
      */
     public static loadDetails = (product: APIProduct): APIProduct => {
         try {
-            const requiredFields = {
-                title: "string",
-                price: "number",
-                description: "string",
-                category: "string",
-            } as const;
+            const requiredFields = ["title", "price", "description", "category"];
 
             return product;
         } catch (error) {
@@ -43,15 +38,18 @@ export class ProductService {
 export interface APIProduct {
     id: number;
     title: string;
+    slug: string;
     price: number;
     description: string;
-    category: string;
-    image: string;
-    rating: APIProductRating;
+    images: string[];
+    creationAt: string;
+    updatedAt: string;
+    category: APICategory;
 }
 
-// creating the API product Raiting type
-export interface APIProductRating {
-    rate: number;
-    count: number;
+export interface APICategory {
+    id: number;
+    name: string;
+    slug: string;
+    image: string;
 }

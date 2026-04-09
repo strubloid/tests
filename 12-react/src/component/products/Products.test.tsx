@@ -4,23 +4,36 @@ import type { APIProduct } from "@src/component/products/ProductService";
 // we start this test by getting the data from the api request to simulate
 const mockProducts = [
     {
-        id: 1,
-        title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        price: 109.95,
-        description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        category: "men's clothing",
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-        rating: { rate: 3.9, count: 120 },
+        id: 17,
+        title: "Classic Black T-Shirt ",
+        slug: "classic-black-t-shirt",
+        price: 35,
+        description: "Elevate your everyday style with our Classic Black T-Shirt. This staple piece is crafted from soft, breathable cotton for all-day comfort.",
+        images: ["https://i.imgur.com/9DqEOV5.jpeg", "https://i.imgur.com/ae0AEYn.jpeg"],
+        creationAt: "2026-04-08T19:37:19.000Z",
+        updatedAt: "2026-04-09T12:59:31.000Z",
+        category: {
+            id: 1,
+            name: "Updated Category Cypress",
+            slug: "updated-category-cypress",
+            image: "https://i.imgur.com/placeholder-category.jpeg",
+        },
     },
     {
-        id: 2,
-        title: "Mens Casual Premium Slim Fit T-Shirts ",
-        price: 22.3,
-        description:
-            "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-        category: "men's clothing",
-        image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
-        rating: { rate: 4.1, count: 259 },
+        id: 19,
+        title: "Sleek Wireless Headphone & Inked Earbud Set",
+        slug: "sleek-wireless-headphone-inked-earbud-set",
+        price: 44,
+        description: "Experience the fusion of style and sound with this sophisticated audio set featuring wireless headphones and earbuds.",
+        images: ["https://i.imgur.com/yVeIeDa.jpeg", "https://i.imgur.com/jByJ4ih.jpeg"],
+        creationAt: "2026-04-08T19:37:19.000Z",
+        updatedAt: "2026-04-08T19:37:19.000Z",
+        category: {
+            id: 2,
+            name: "Electronics",
+            slug: "electronics",
+            image: "https://i.imgur.com/ZANVnHE.jpeg",
+        },
     },
 ];
 
@@ -41,10 +54,10 @@ describe("Products", () => {
 
     it("loads when the api URL is correct", async () => {
         // this will be the variable to check after the request to the API
-        var titleToCheck = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
+        var titleToCheck = "Classic Black T-Shirt  Sleek Wireless Headphone & Inked Earbud Set";
 
         // loading the api url value to check
-        const apiUrl = "https://fakestoreapi.com/products";
+        const apiUrl = "https://api.escuelajs.co/api/v1/products";
 
         // trying to use the api function
         const data: APIProduct[] = await ProductService.fetchData(apiUrl);
@@ -61,7 +74,7 @@ describe("Products", () => {
 
     it("throws an error when the api URL is incorrect", async () => {
         // a wrong api url to check the error handling
-        const wrongApiUrl = "https://fakestoreapi.com/incorrect-url";
+        const wrongApiUrl = "https://api.escuelajs.co/api/v1/products/incorrect-url";
         const errorMessage = "Error fetching data, try again!";
         let capturedError: Error | null = null;
 

@@ -5,7 +5,7 @@ import type { APIProduct } from "./ProductService";
 
 function Products() {
     // API url for fetching products
-    const apiURL = "https://fakestoreapi.com/products";
+    const apiURL = "https://api.escuelajs.co/api/v1/products";
 
     // product collection
     let [products, setProducts] = useState<APIProduct[]>([]);
@@ -121,13 +121,10 @@ function Products() {
                                     x
                                 </p>
                                 <h3>{details?.title}</h3>
-                                <img src={details?.image} alt={details?.title} />
+                                <img src={details?.images[0]} alt={details?.title} />
                                 <p>{details?.description}</p>
                                 <p className="price">Price: {details?.price}</p>
-                                <p>Category: {details?.category}</p>
-                                <p>
-                                    Rating: {details?.rating.rate} ({details?.rating.count} reviews)
-                                </p>
+                                <p>Category: {details?.category.name}</p>
                             </div>
                         </>
                     )}
